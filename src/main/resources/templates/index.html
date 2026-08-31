@@ -11,6 +11,20 @@
 
 <p>Find a place to study based on the location's quietness rating.</p>
 
+<form method="get" action="/">
+    <label>
+        <input type="checkbox"
+               name="quietOnly"
+               value="true"
+               th:checked="${quietOnly}">
+        Show quiet study spots only
+    </label>
+
+    <button type="submit">Apply Filter</button>
+</form>
+
+<br>
+
 <table border="1">
     <tr>
         <th>Study Spot</th>
