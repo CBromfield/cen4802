@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study Spot Finder</title>
+</head>
+
+<body>
+
+<h1>Study Spot Finder</h1>
+
+<p>Find a place to study based on the location's quietness rating.</p>
+
+<table border="1">
+    <tr>
+        <th>Study Spot</th>
+        <th>Type</th>
+        <th>Quietness Rating</th>
+    </tr>
+
+    <tr th:each="spot : ${spots}">
+        <td th:text="${spot.name}"></td>
+        <td th:text="${spot.type}"></td>
+        <td th:text="${spot.quietness} + ' / 5'"></td>
+    </tr>
+</table>
+
+</body>
+</html>
