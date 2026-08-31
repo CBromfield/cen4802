@@ -3,6 +3,7 @@ package com.cen4802.studysites;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,9 @@ import java.util.List;
 public class StudySpotController {
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(
+            @RequestParam(required = false) Boolean quietOnly,
+            Model model) {
 
         List<StudySpot> spots = new ArrayList<>();
 
@@ -20,7 +23,12 @@ public class StudySpotController {
         spots.add(new StudySpot("Coffee Corner", "Coffee Shop", 4));
         spots.add(new StudySpot("Science Building Lounge", "Campus", 5));
 
+        if (Boolean.TRUE.equals(quietOnly)) {
+            spots.removeIf(spot -> spot.getQuietness() < 4);
+        }
+
         model.addAttribute("spots", spots);
+        model.addAttribute("quietOnly", quietOnly);
 
         return "index";
     }
