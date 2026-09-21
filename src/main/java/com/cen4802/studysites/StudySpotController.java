@@ -11,6 +11,7 @@ import java.util.List;
 @Controller
 public class StudySpotController {
 
+	private final StudySpotService studySpotService = new StudySpotService();
     @GetMapping("/")
     public String home(
             @RequestParam(required = false) Boolean quietOnly,
@@ -24,7 +25,7 @@ public class StudySpotController {
         spots.add(new StudySpot("Science Building Lounge", "Campus", 5));
 
         if (Boolean.TRUE.equals(quietOnly)) {
-            spots.removeIf(spot -> spot.getQuietness() < 4);
+        	spots.removeIf(spot -> !studySpotService.isQuietEnough(spot));
         }
 
         model.addAttribute("spots", spots);
