@@ -9,7 +9,7 @@
 
 <h1>Study Spot Finder</h1>
 
-<p>Find the best quiet study spot for your next study session on campus.</p>
+<p>Find the best quiet study spot for your next study session on campus or nearby.</p>
 
 <form method="get" action="/">
     <label>
@@ -35,7 +35,8 @@
     <tr th:each="spot : ${spots}">
         <td th:text="${spot.name}"></td>
         <td th:text="${spot.type}"></td>
-        <td th:text="${spot.quietness} + ' / 5'"></td>
+		<span th:text="${spot.quietness} + ' / 5'"></span>
+		   <strong th:if="${spot.quietness == 5}">Highly Recommended!</strong>
     </tr>
 </table>
 
