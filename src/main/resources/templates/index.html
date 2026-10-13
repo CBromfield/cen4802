@@ -35,8 +35,10 @@
     <tr th:each="spot : ${spots}">
         <td th:text="${spot.name}"></td>
         <td th:text="${spot.type}"></td>
-		<span th:text="${spot.quietness} + ' / 5'"></span>
-		   <strong th:if="${spot.quietness == 5}">Highly Recommended!</strong>
+        <td>
+            <span th:text="${spot.quietness} + ' / 5'"></span>
+            <strong th:if="${spot.quietness == 5}">Highly Recommended!</strong>
+        </td>
     </tr>
 </table>
 
