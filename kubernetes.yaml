@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: study-spot-finder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: study-spot-finder
+  template:
+    metadata:
+      labels:
+        app: study-spot-finder
+    spec:
+      containers:
+        - name: study-spot-finder
+          image: study-spot-finder:midterm
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: study-spot-service
+spec:
+  selector:
+    app: study-spot-finder
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
